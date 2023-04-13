@@ -1,0 +1,60 @@
+ {
+  "contacts": [
+   {
+    "id": 1,
+    "name": "Gustavo Tartare",
+    "email": "gustavocarrertartare@gmail.com",
+    "company": "VExpenses",
+    "phones": [
+     {
+      "id": "75a7d996-d9f9-11ed-afa1-0242ac120002",
+      "phoneNumber": "48999502728"
+     },
+     {
+      "id": "75a7dd9c-d9f9-11ed-afa1-0242ac120002",
+      "phoneNumber": "48996046151"
+     }
+    ],
+    "address": [
+     {
+      "id": "75a7d996-d9f9-11ed",
+      "cep": "88870-000",
+      "street": "Olivio Pietro Menegasso",
+      "neighbourhood": "Centro",
+      "city": "Orleans",
+      "state": "SC",
+      "number": 54,
+      "complement": "Primeira casa"
+     }
+    ]
+   },
+   {
+    "id": 2,
+    "name": "Gustavo Tartare",
+    "email": "gustavocarrertartare@gmail.com",
+    "company": "VExpenses",
+    "phones": [
+     {
+      "id": "75a7d996-d9f9-11ed-afa1-0242ac120002",
+      "number": "48999502728"
+     },
+     {
+      "id": "75a7dd9c-d9f9-11ed-afa1-0242ac120002",
+      "number": "48996046151"
+     }
+    ],
+    "address": [
+     {
+      "id": "75a7d996-d9f9-11ed",
+      "cep": "88870-000",
+      "street": "Olivio Pietro Menegasso",
+      "neighbourhood": "Centro",
+      "city": "Orleans",
+      "state": "SC",
+      "number": 54,
+      "complement": "Primeira casa"
+     }
+    ]
+   }
+  ]
+ }
