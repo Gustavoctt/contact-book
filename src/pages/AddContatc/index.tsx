@@ -3,27 +3,71 @@ import Box from "../../components/atoms/Box";
 import Title from "../../components/atoms/Typography/Title";
 import * as S from "./styles";
 import Button from "../../components/atoms/Button";
-import { CaretLeft, Plus, Trash } from "@phosphor-icons/react";
+import { CaretLeft } from "@phosphor-icons/react";
 import P from "../../components/atoms/Typography/P";
-import { useFieldArray, useForm, FieldValues } from "react-hook-form";
-import { useEffect } from "react";
+import { useForm, FieldValues } from "react-hook-form";
 import { FormUserData } from "./components/FormUserData";
+import { FormAddressData } from "./components/FormAddressData";
+import { Address } from "../../services";
 
-type IPhone = {
-  name: string;
+type IAddress = {
+  id: string;
+  cep: string;
+  street: string;
+  neighbourhood: string;
+  city: string;
+  state: string;
+  number: string;
+  complement: string;
 };
 
-type FormValues = FieldValues & {
+export type FormValues = FieldValues & {
   name: string;
   email: string;
   company: string;
-  phone: Array<IPhone>;
+  phone: Array<string>;
+  address: Array<IAddress>;
 };
 
 export const AddContact = () => {
-  const { register, handleSubmit, control } = useForm<FormValues>();
+  const {
+    register,
+    handleSubmit,
+    control,
+    setValue,
+    formState: { errors },
+  } = useForm<FormValues>({
+    defaultValues: {
+      address: [
+        {
+          cep: "",
+          city: "",
+          complement: "",
+          neighbourhood: "",
+          number: "",
+          state: "",
+          street: "",
+        },
+      ],
+    },
+  });
 
-  const onSubmit = (data: FormValues) => console.log(data);
+  const onSubmit = (data: FormValues) => console.log(data.address);
+
+  // const handleGetAddressData = async (value: string, index: number) => {
+  //   console.log("loading");
+  //   try {
+  //     const addressData = await Address.getAddressData(+value);
+
+  //     console.log(addressData);
+
+  //     console.log("close");
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  // handleGetAddressData("88870000", 1);
 
   return (
     <S.Container>
@@ -48,53 +92,16 @@ export const AddContact = () => {
 
           <FormUserData register={register} control={control} />
 
-          <S.HeaderForm>
-            <P color="var(--white)" size="large">
-              Address data
-            </P>
-            <Button
-              variant="icon"
-              type="button"
-              backgroundColor="var(--gray-200)"
-              onClick={() => {}}
-            >
-              <Plus />
-            </Button>
-          </S.HeaderForm>
-
-          <S.FormTwoColumns>
-            <S.Input>
-              <input type="text" placeholder="CEP" />
-            </S.Input>
-          </S.FormTwoColumns>
-          <S.FormOneColum>
-            <S.Input>
-              <input type="text" placeholder="Rua" />
-            </S.Input>
-          </S.FormOneColum>
-          <S.FormTwoColumns>
-            <S.Input>
-              <input type="text" placeholder="Número" />
-            </S.Input>
-            <S.Input>
-              <input type="text" placeholder="Complemento" />
-            </S.Input>
-          </S.FormTwoColumns>
-          <S.FormThreeColumns>
-            <S.Input>
-              <input type="text" placeholder="Bairro" />
-            </S.Input>
-            <S.Input>
-              <input type="text" placeholder="Cidade" />
-            </S.Input>
-            <S.Input>
-              <input type="text" placeholder="UF" />
-            </S.Input>
-          </S.FormThreeColumns>
+          <FormAddressData
+            register={register}
+            control={control}
+            setValue={setValue}
+          />
           <S.Footer>
             <Button type="submit">Save</Button>
           </S.Footer>
         </S.FormUser>
+        {errors.name && <span>This field is required</span>}
       </Box>
     </S.Container>
   );

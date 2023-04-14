@@ -4,22 +4,13 @@ import {
   UseFormRegister,
   useFieldArray,
   useForm,
+  useFormContext,
 } from "react-hook-form";
 import * as S from "./styles";
 import { useEffect } from "react";
 import Button from "../../../../components/atoms/Button";
 import { Plus, Trash } from "@phosphor-icons/react";
-
-type IPhone = {
-  name: string;
-};
-
-type FormValues = FieldValues & {
-  name: string;
-  email: string;
-  company: string;
-  phone: Array<IPhone>;
-};
+import { FormValues } from "../..";
 
 interface IFormUserData {
   register: UseFormRegister<FormValues>;
@@ -68,8 +59,8 @@ export const FormUserData = ({ register, control }: IFormUserData) => {
           />
         </S.Input>
       </S.FormOneColum>
-      {fields.map(({ id }, index) => (
-        <S.FormTwoColumns key={id}>
+      {fields.map((item, index) => (
+        <S.FormTwoColumns key={index}>
           <S.Input>
             <input
               type="text"
