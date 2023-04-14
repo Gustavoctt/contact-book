@@ -4,6 +4,7 @@ import P from "../../components/atoms/Typography/P";
 import Title from "../../components/atoms/Typography/Title";
 import * as S from "./styles";
 import Button from "../../components/atoms/Button";
+import { Link } from "react-router-dom";
 
 export const Home = () => {
   return (
@@ -14,10 +15,12 @@ export const Home = () => {
             <Title color="var(--white)" size="small">
               Users
             </Title>
-            <Button>
-              <Plus size={16} />
-              <P color="var(--white)">Add new contact</P>
-            </Button>
+            <Link to={"/new"}>
+              <Button>
+                <Plus size={16} />
+                <P color="var(--white)">Add new contact</P>
+              </Button>
+            </Link>
           </S.Header>
 
           <S.Search type="text" placeholder="Search" />

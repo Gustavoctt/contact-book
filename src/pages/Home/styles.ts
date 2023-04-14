@@ -5,6 +5,7 @@ export const Container = styled.div`
   flex-direction: column;
   max-width: 800px;
   margin: 0 auto;
+  padding: 0 1rem;
 `;
 
 export const UsersList = styled.div`
@@ -18,6 +19,7 @@ export const Header = styled.header`
   display: flex;
   justify-content: space-between;
   margin-bottom: 1rem;
+  align-items: center;
 `;
 
 export const Search = styled.input`

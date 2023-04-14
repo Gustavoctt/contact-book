@@ -4,16 +4,18 @@ type ButtonProps = {
   textColor?: string;
   variant?: "solid" | "icon";
   backgroundColor?: string;
+  size?: "large" | "small";
 };
 
 const buttonModifier = {
-  icon: () => css`
+  icon: (size: string) => css`
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
+    width: ${size === "large" ? "40px" : "30px"};
+    height: ${size === "large" ? "40px" : "30px"};
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: ${size === "small" && "0.25rem 0.5rem"};
 
     svg {
       line-height: 100%;
@@ -28,6 +30,7 @@ const Button = styled.button<ButtonProps>`
     textColor = "var(--white)",
     variant = "solid",
     backgroundColor = "var(--orange)",
+    size = "large",
   }) =>
     css`
       display: flex;
@@ -40,7 +43,7 @@ const Button = styled.button<ButtonProps>`
       background-color: ${backgroundColor};
       transition: all 0.4s;
 
-      ${variant === "icon" && buttonModifier[variant]()}
+      ${variant === "icon" && buttonModifier[variant](size)}
 
       svg {
         color: ${textColor};
