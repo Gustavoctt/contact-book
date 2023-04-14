@@ -1,35 +1,20 @@
-import { Link } from "react-router-dom";
+import { Snackbar } from "../../hooks";
+import { useForm } from "react-hook-form";
 import Box from "../../components/atoms/Box";
-import Title from "../../components/atoms/Typography/Title";
-import * as S from "./styles";
-import Button from "../../components/atoms/Button";
 import { CaretLeft } from "@phosphor-icons/react";
+import Button from "../../components/atoms/Button";
 import P from "../../components/atoms/Typography/P";
-import { useForm, FieldValues } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
 import { FormUserData } from "./components/FormUserData";
+import Title from "../../components/atoms/Typography/Title";
 import { FormAddressData } from "./components/FormAddressData";
-import { Address } from "../../services";
 
-type IAddress = {
-  id: string;
-  cep: string;
-  street: string;
-  neighbourhood: string;
-  city: string;
-  state: string;
-  number: string;
-  complement: string;
-};
-
-export type FormValues = FieldValues & {
-  name: string;
-  email: string;
-  company: string;
-  phone: Array<string>;
-  address: Array<IAddress>;
-};
+import * as S from "./styles";
+import { FormValues } from "../../types/contatc";
 
 export const AddContact = () => {
+  const { newSuccess } = Snackbar.useSnackbar();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -52,22 +37,11 @@ export const AddContact = () => {
     },
   });
 
-  const onSubmit = (data: FormValues) => console.log(data.address);
-
-  // const handleGetAddressData = async (value: string, index: number) => {
-  //   console.log("loading");
-  //   try {
-  //     const addressData = await Address.getAddressData(+value);
-
-  //     console.log(addressData);
-
-  //     console.log("close");
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
-
-  // handleGetAddressData("88870000", 1);
+  const onSubmit = (data: FormValues) => {
+    console.log(data);
+    newSuccess("Contato criado com sucesso!");
+    navigate("/");
+  };
 
   return (
     <S.Container>

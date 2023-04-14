@@ -3,15 +3,15 @@ import {
   UseFormRegister,
   UseFormSetValue,
   useFieldArray,
-  useForm,
 } from "react-hook-form";
-import * as S from "./styles";
-import P from "../../../../components/atoms/Typography/P";
-import Button from "../../../../components/atoms/Button";
+import { Snackbar } from "../../../../hooks";
 import { Plus } from "@phosphor-icons/react";
-import { FormValues } from "../..";
 import { Address } from "../../../../services";
+import { FormValues } from "../../../../types/contatc";
+import Button from "../../../../components/atoms/Button";
+import P from "../../../../components/atoms/Typography/P";
 
+import * as S from "./styles";
 interface IFormUserData {
   register: UseFormRegister<FormValues>;
   control: Control<FormValues, any>;
@@ -23,15 +23,13 @@ export const FormAddressData = ({
   control,
   setValue,
 }: IFormUserData) => {
-  const { fields, append, remove, update, replace } = useFieldArray<FormValues>(
-    {
-      control,
-      name: "address",
-    }
-  );
+  const { newWarning } = Snackbar.useSnackbar();
+  const { fields, append } = useFieldArray<FormValues>({
+    control,
+    name: "address",
+  });
 
   const handleGetAddressData = async (value: string, index: number) => {
-    console.log("loading");
     try {
       const addressData = await Address.getAddressData(+value);
 
@@ -40,10 +38,10 @@ export const FormAddressData = ({
       setValue(`address[${index}].neighbourhood`, addressData.bairro);
       setValue(`address[${index}].street`, addressData.logradouro);
       setValue(`address[${index}].complement`, addressData.complemento);
-
-      console.log("close");
     } catch (error) {
-      console.log(error);
+      return newWarning(
+        "Erro ao obter os dados de localização, por favor, adicione os dados!"
+      );
     }
   };
 
