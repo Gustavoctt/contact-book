@@ -30,12 +30,20 @@ export const FormTwoColumns = styled.div`
     display: flex;
     gap: 0.5rem;
   }
+
+  @media (max-width: 450px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 export const FormThreeColumns = styled.div`
   display: grid;
   grid-template-columns: 1fr 2fr 1fr;
   gap: 0.5rem;
+
+  @media (max-width: 450px) {
+    grid-template-columns: 1fr;
+  }
 `;
 
 export const Input = styled.div`

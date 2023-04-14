@@ -14,6 +14,11 @@ export const FormTwoColumns = styled.div`
     display: flex;
     gap: 0.5rem;
   }
+
+  @media (max-width: 450px) {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 `;
 
 export const FormThreeColumns = styled.div`

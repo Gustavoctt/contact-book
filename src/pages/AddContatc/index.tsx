@@ -10,7 +10,7 @@ import Title from "../../components/atoms/Typography/Title";
 import { FormAddressData } from "./components/FormAddressData";
 
 import * as S from "./styles";
-import { FormValues } from "../../types/contatc";
+import { FormValues } from "../../types/contact";
 
 export const AddContact = () => {
   const { newSuccess } = Snackbar.useSnackbar();

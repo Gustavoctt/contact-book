@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { FormValues } from "../..";
 import { Plus, Trash } from "@phosphor-icons/react";
+import { FormValues } from "../../../../types/contact";
 import Button from "../../../../components/atoms/Button";
 import { Control, UseFormRegister, useFieldArray } from "react-hook-form";
 

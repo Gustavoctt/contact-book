@@ -7,7 +7,7 @@ import {
 import { Snackbar } from "../../../../hooks";
 import { Plus } from "@phosphor-icons/react";
 import { Address } from "../../../../services";
-import { FormValues } from "../../../../types/contatc";
+import { FormValues } from "../../../../types/contact";
 import Button from "../../../../components/atoms/Button";
 import P from "../../../../components/atoms/Typography/P";
 
