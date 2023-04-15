@@ -31,13 +31,15 @@ export const FormAddressData = ({
 
   const handleGetAddressData = async (value: string, index: number) => {
     try {
-      const addressData = await Address.getAddressData(+value);
+      if (value) {
+        const addressData = await Address.getAddressData(+value);
 
-      setValue(`address[${index}].state`, addressData.uf);
-      setValue(`address[${index}].city`, addressData.localidade);
-      setValue(`address[${index}].neighbourhood`, addressData.bairro);
-      setValue(`address[${index}].street`, addressData.logradouro);
-      setValue(`address[${index}].complement`, addressData.complemento);
+        setValue(`address[${index}].state`, addressData.uf);
+        setValue(`address[${index}].city`, addressData.localidade);
+        setValue(`address[${index}].neighbourhood`, addressData.bairro);
+        setValue(`address[${index}].street`, addressData.logradouro);
+        setValue(`address[${index}].complement`, addressData.complemento);
+      }
     } catch (error) {
       return newWarning(
         "Erro ao obter os dados de localização, por favor, adicione os dados!"

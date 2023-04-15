@@ -1,6 +1,7 @@
 import { Snackbar } from "../../hooks";
 import { useForm } from "react-hook-form";
 import Box from "../../components/atoms/Box";
+import { FormValues } from "../../types/contact";
 import { CaretLeft } from "@phosphor-icons/react";
 import Button from "../../components/atoms/Button";
 import P from "../../components/atoms/Typography/P";
@@ -9,8 +10,16 @@ import { FormUserData } from "./components/FormUserData";
 import Title from "../../components/atoms/Typography/Title";
 import { FormAddressData } from "./components/FormAddressData";
 
+import * as yup from "yup";
+import { yupResolver } from "@hookform/resolvers/yup";
 import * as S from "./styles";
-import { FormValues } from "../../types/contact";
+
+const validationSchema = yup.object().shape({
+  // name: yup.string().required(),
+  // email: yup.string().email().required(),
+  // company: yup.string().required(),
+  phone: yup.array().of(yup.string().min(11)),
+});
 
 export const AddContact = () => {
   const { newSuccess } = Snackbar.useSnackbar();
@@ -20,6 +29,7 @@ export const AddContact = () => {
     handleSubmit,
     control,
     setValue,
+    watch,
     formState: { errors },
   } = useForm<FormValues>({
     defaultValues: {
@@ -35,6 +45,7 @@ export const AddContact = () => {
         },
       ],
     },
+    resolver: yupResolver(validationSchema),
   });
 
   const onSubmit = (data: FormValues) => {
@@ -75,7 +86,7 @@ export const AddContact = () => {
             <Button type="submit">Save</Button>
           </S.Footer>
         </S.FormUser>
-        {errors.name && <span>This field is required</span>}
+        {errors.email && <span>asasx</span>}
       </Box>
     </S.Container>
   );

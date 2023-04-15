@@ -44,7 +44,13 @@ export const Input = styled.div`
     padding: 0.5rem;
     border-radius: 8px;
     border: none;
+    border: 1px solid var(--gray-200);
     background-color: var(--gray-200);
     color: var(--white);
+
+    :focus {
+      outline: none !important;
+      border: 1px solid var(--orange);
+    }
   }
 `;

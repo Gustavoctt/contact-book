@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Plus, Trash } from "@phosphor-icons/react";
 import { FormValues } from "../../../../types/contact";
 import Button from "../../../../components/atoms/Button";
@@ -56,7 +56,7 @@ export const FormUserData = ({ register, control }: IFormUserData) => {
         <S.FormTwoColumns key={index}>
           <S.Input>
             <input
-              type="text"
+              type="number"
               id="phone"
               placeholder="Phone"
               {...register(`phone[${index}]`)}
